@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "lib": [
+            "DOM",
+            "es2020"
+        ],
+        "strict": true,
+        "allowJs": true,
+        "skipLibCheck": true,
+        "noImplicitAny": true,
+        "removeComments": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "target": "es2016",
+        "outDir": "dist",
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "declaration": true,
+    },
+    "include": [
+        "./**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "./**/*.test.ts"
+    ]
+}
