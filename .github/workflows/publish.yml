@@ -1,10 +1,9 @@
 name: publish
 
 on:
-  workflow_run:
-    workflows: ["Release Check"]
-    types: [completed]
-    branches: [main]
+  push:
+    branches:
+      - main
 
 permissions:
   id-token: write
