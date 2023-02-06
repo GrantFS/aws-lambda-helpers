@@ -1,0 +1,30 @@
+name: publish
+
+on:
+  workflow_run:
+    workflows: ["Release Check"]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  id-token: write
+  contents: write
+  pull-requests: write
+  issues: write
+  actions: read
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Publish
+        run: npm run publish
+
+
