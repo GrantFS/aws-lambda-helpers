@@ -6,7 +6,7 @@
     "types": "./dist/index.d.ts",
     "scripts": {
         "release": "standard-version",
-        "publish": "npm publish --access public",
+        "publish-public": "npm publish --access public",
         "build": "tsc",
         "test": "jest --runInBand --verbose"
     },
