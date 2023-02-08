@@ -1,3 +1,4 @@
-export {getDatabaseInstance} from './dynamoDb'
-export {createBatches} from "./batch"
-export {Parameters} from "./parameters"
+export { getDatabaseInstance } from "./dynamoDb"
+export { createBatches } from "./batch"
+export { Parameters } from "./parameters"
+export { axiosMock, dynamoDbMock } from "./mocks"
