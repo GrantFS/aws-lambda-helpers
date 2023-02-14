@@ -17,7 +17,7 @@ jobs:
     name: Main Version
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.package-version.outputs.result }}
+      version: ${{ steps.check-tag.outputs.result }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -28,8 +28,21 @@ jobs:
 
       - name: Check tag
         id: check-tag
-        uses: GrantFS/actions-tag-check@0.0.1
+        uses: GrantFS/actions-tag-check@0.0.2
 
       - name: Is this tagged
         run: echo ${{ steps.check-tag.outputs.tagged }}
+
+      - name: Already has this tag
+        if: steps.tagged.outputs.tagged == 1
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Failed to create a Release",
+              body: "The version number is currently the same as the last merge, so no code has been deployed.  Please trigger a full deployment with the correct version.",
+              labels: ['${{ steps.package-version.outputs.result }}', 'Failed Release']
+            core.setFailed('Release FAILED - Release Required')
 
