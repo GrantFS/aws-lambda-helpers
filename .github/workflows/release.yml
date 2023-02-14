@@ -34,7 +34,7 @@ jobs:
         run: echo ${{ steps.check-tag.outputs.tagged }}
 
       - name: Already has this tag
-        if: steps.tagged.outputs.tagged == 1
+        if: steps.tagged.outputs.tagged == 0
         uses: actions/github-script@v6
         with:
           script: |
