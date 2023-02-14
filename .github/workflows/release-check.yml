@@ -86,13 +86,10 @@ jobs:
           git status
 
       - name: Upgrade Version
-        uses:  ./.github/actions/upgrade-version
+        uses:  GrantFS/actions-upgrade-version@V0.0.3
         with:
           github-user: ${{ github.actor }}
 
-      - name: Push Version
-        shell: bash
-        run: git push
 
   update:
     name: Update Version
