@@ -112,23 +112,13 @@ jobs:
         run: git checkout "$GITHUB_HEAD_REF"
 
       - name: Upgrade Version
-        uses:  ./.github/actions/upgrade-version
+        id: upgrade
+        uses: GrantFS/actions-upgrade-version@V0.0.3
         with:
           github-user: ${{ github.actor }}
 
-      - name: Push version
-        shell: bash
-        run: git push
-
-      - name: Get Version
-        id: package-version
-        uses: actions/github-script@v6
-        with:
-          result-encoding: string
-          script: return require('./package.json').version
-
       - name: Version
-        run: echo ${{ steps.package-version.outputs.result }}
+        run: echo ${{ steps.upgrade.outputs.current-version }}
 
   complete-version:
     name: Complete Version
